@@ -120,3 +120,286 @@ public class GetYearWithLessPopulation {
 
 
 }
+
+############################################################################################################
+
+To Reverese words in a sentence and also each word in reverse order
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.lang.System.out;
+
+public class ReverseWordsInLine {
+
+    public static void main (String[] args){
+        String data = "Coding    Recipes is Super   Cool";
+      //  out.println(new ReverseWords(data));
+        ReverseWords(data);
+    }
+
+    public static String ReverseWords(String line)
+    {
+        String[] words = line.split("\\s+");
+       // out.println(words);
+       out.println(Arrays.asList(words).toString());
+
+      //swap(words);
+
+
+       List<String> data = swap(words);
+        out.println(data);
+
+      out.println(data.stream().map(x->swapChars(x)).collect(Collectors.toList()));
+
+      List<String> finaldata = data.stream().map(x->swapChars(x)).collect(Collectors.toList());
+
+        String[] array = finaldata.toArray(new String[finaldata.size()]);
+
+        System.out.println(Arrays.toString(array));
+       //out.println(Arrays.toString(data.stream().toArray(new String(swapChars(data)))));
+
+     //  out.println(finalData.toCharArray());
+
+     //   String test1 = "new";
+
+
+       // out.println(swapChars(test1));
+
+        // Arrays.stream(words).forEach(i->);
+ /*      List<String> data = new ArrayList<>();
+       for(String word:words)
+       {
+           data.add(word);
+       }
+
+       out.println(data);*/
+
+
+        return null;
+    }
+
+    public static List<String> swap(String[] words){
+
+        String temp = null;
+        List<String> data = new ArrayList<>();
+        for(int i=0;i<words.length;i++)
+        {
+            for(int j= i; j<words.length;j++){
+
+                temp = words[i];
+                words[i] = words[j];
+                words[j] = temp;
+            }
+          data.add(words[i]);
+        }
+        return data;
+    }
+
+
+    public static String swapChars(String input){
+
+        char[] word = input.toCharArray();
+        Character temp = null;
+       // List<char[]> word = Arrays.asList(tt);
+        List<Character> newval  = new ArrayList<>();
+
+
+        for(int i=0;i<word.length;i++)
+        {
+            for(int j= i; j<word.length;j++){
+
+               temp = word[i];
+               word[i] = word[j];
+               word[j] = temp;
+            }
+
+            newval.add(word[i]);
+           //
+        }
+
+        String result = new String(String.valueOf(newval));
+        return result;
+    }
+}
+
+######################################################################################################
+Coin Change
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+/**
+ * Print all the Combinations of Change for a given Amount
+ */
+class CoinChange {
+
+    private static List<Integer> coins;
+    private static int count=0;
+
+    /**
+     * Initialising the Coing Denominations
+     */
+    private static void init() {
+        coins = new ArrayList<Integer>();
+       // coins.add(1);
+        coins.add(4);
+        coins.add(3);
+        coins.add(5);
+        coins.add(9);
+        //coins.add(50);
+    }
+
+    /**
+     * Prints all comninations of the coin change
+     */
+    public static void coinCombinations(int amount,int index,LinkedList<Integer> list)
+    {
+        if(amount==0)
+        {
+            count++;
+         //   System.out.println("Result" + list.toString());
+            return ;
+        }
+
+        if(amount < 0)
+            return ;
+
+        for(int i=index ; i < coins.size();i++)
+        {
+            int coin = coins.get(i);
+          //  if(amount >= coin)
+            if(amount-coin>=0)
+            {
+                list.add(coin);
+              //  System.out.println("Before" + list);
+                coinCombinations(amount - coin ,i,list );
+                System.out.println("After" + list);
+
+                list.removeLast();
+
+
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int amount = 5;
+       init();
+       LinkedList<Integer> temp = new LinkedList<>();
+       // coinCombinations(amount,0,new LinkedList<Integer>());
+        coinCombinations(amount,0, temp);
+
+        System.out.println("Number of Combinations :" + count);
+    }
+}
+
+##################################################################################
+Three smallest i an array
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class ThreeSmallestinaArray{
+
+public static void main(String[] args){
+
+    int[] input = {77,3,9,1,10,5,6,7,8};
+    System.out.println(GetThreeMinValues(input,3));
+
+}
+
+    public static List<Integer> GetThreeMinValues(int[] data, int val){
+
+        //List<Integer> result = new ArrayList<>();
+
+        Arrays.sort(data);
+
+        List<Integer> result = (List<Integer>) Arrays.stream(data).boxed().collect(Collectors.toList());
+
+
+
+              // .boxed()
+               //.collect(Collectors.toList());
+
+      //  Collections.sort(result);
+
+       System.out.println(result.subList(0,val));
+
+        List<Integer> finalist = new ArrayList<>();
+        for(int i = 0; i<val; i++)
+        {
+            finalist.add(data[i]);
+        }
+
+        return finalist;
+    }
+
+}
+######################################################################################
+
+Get last element in a fibonacci series..
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class TestHashMap{
+
+    public static void main(String[] args){
+
+      /*  List<String> memberNames = new ArrayList<>();
+        memberNames.add("Amitabh");
+        memberNames.add("Shekhar");
+        memberNames.add("Aman");
+        memberNames.add("Rahul");
+        memberNames.add("Shahrukh");
+        memberNames.add("Rahul2");
+        memberNames.add("Rahul3");
+        memberNames.add("Salman");
+        memberNames.add("Yana");
+        memberNames.add("Lokesh");*/
+
+        System.out.println(getFibonacci(8));
+
+        System.out.println(fibonacci(8));
+
+      //  memberNames.stream().sorted()
+                          //  .map(String::toUpperCase).forEach(p->System.out.println(p));
+
+       // memberNames.stream().flatMap(x->Stream.iterate(x<i))
+
+
+    }
+
+
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return Stream.iterate(new int[] {0, 1}, f -> new int[] {f[1], f[0] + f[1]})
+                .limit(n)
+                .reduce((a, b) -> b)
+                .get()[0];
+    }
+
+
+
+    public static List<Integer> getFibonacci(int series) {
+        return Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(series)
+                .map(n -> n[0])
+                .collect(Collectors.toList());
+    }
+
+
+}
