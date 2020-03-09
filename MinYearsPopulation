@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class GetYearWithLessPopulation {
+
+
+    public static void main(String args[]) {
+
+
+        System.out.println(GetYearsWithLessPopulation());
+
+
+    }
+
+
+    public static List<String> GetYearsWithLessPopulation(){
+
+        List<String> data = new ArrayList<String>();
+        List<String> bornList = new ArrayList<String>();
+        List<String> deadList = new ArrayList<String>();
+        data.add("1902:1991");
+        data.add("1941:1978");
+        data.add("2004:");
+        data.add("1957:");
+        data.add("1989:2008");
+        data.add("1909:2005");
+        data.add("1918:");
+        data.add("1913:2010");
+        data.add("1979:");
+        data.add("1961:2002");
+        data.add("1977:2003");
+        data.add("1909:1991");
+        data.add("1909:1976");
+        data.add("1909:1965");
+
+        for(String row:data)
+        {
+            String splitData[] = row.split(":");
+            if(splitData.length==0|| splitData.length>2) continue;
+            String born = splitData[0];
+            bornList.add(born);
+            if(splitData.length!=2) continue;
+            String dead = splitData[1];
+            deadList.add(dead);
+
+        }
+
+
+
+        List<String> deadYearsWithOne = deadList.stream().map(x->String.valueOf(Integer.parseInt(x)+1)).filter(x->
+        {
+            if(bornList.contains(x))
+            {return false;} return true;
+        }).distinct().collect(Collectors.toList());
+
+
+        return deadYearsWithOne;
+
+
+
+    }
+
+
+
+
+}
