@@ -1,0 +1,101 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.lang.System.out;
+
+public class ReverseWordsInLine {
+
+    public static void main (String[] args){
+        String data = "Coding    Recipes is Super   Cool";
+      //  out.println(new ReverseWords(data));
+        ReverseWords(data);
+    }
+
+    public static String ReverseWords(String line)
+    {
+        String[] words = line.split("\\s+");
+       // out.println(words);
+       out.println(Arrays.asList(words).toString());
+
+      //swap(words);
+
+
+       List<String> data = swap(words);
+        out.println(data);
+
+      out.println(data.stream().map(x->swapChars(x)).collect(Collectors.toList()));
+
+      List<String> finaldata = data.stream().map(x->swapChars(x)).collect(Collectors.toList());
+
+        String[] array = finaldata.toArray(new String[finaldata.size()]);
+
+        System.out.println(Arrays.toString(array));
+       //out.println(Arrays.toString(data.stream().toArray(new String(swapChars(data)))));
+
+     //  out.println(finalData.toCharArray());
+
+     //   String test1 = "new";
+
+
+       // out.println(swapChars(test1));
+
+        // Arrays.stream(words).forEach(i->);
+ /*      List<String> data = new ArrayList<>();
+       for(String word:words)
+       {
+           data.add(word);
+       }
+
+       out.println(data);*/
+
+
+        return null;
+    }
+
+    public static List<String> swap(String[] words){
+
+        String temp = null;
+        List<String> data = new ArrayList<>();
+        for(int i=0;i<words.length;i++)
+        {
+            for(int j= i; j<words.length;j++){
+
+                temp = words[i];
+                words[i] = words[j];
+                words[j] = temp;
+            }
+          data.add(words[i]);
+        }
+        return data;
+    }
+
+
+    public static String swapChars(String input){
+
+        char[] word = input.toCharArray();
+        Character temp = null;
+       // List<char[]> word = Arrays.asList(tt);
+        List<Character> newval  = new ArrayList<>();
+
+
+        for(int i=0;i<word.length;i++)
+        {
+            for(int j= i; j<word.length;j++){
+
+               temp = word[i];
+               word[i] = word[j];
+               word[j] = temp;
+            }
+
+            newval.add(word[i]);
+           //
+        }
+
+        String result = new String(String.valueOf(newval));
+        return result;
+    }
+}
