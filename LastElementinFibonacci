@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class TestHashMap{
+
+    public static void main(String[] args){
+
+      /*  List<String> memberNames = new ArrayList<>();
+        memberNames.add("Amitabh");
+        memberNames.add("Shekhar");
+        memberNames.add("Aman");
+        memberNames.add("Rahul");
+        memberNames.add("Shahrukh");
+        memberNames.add("Rahul2");
+        memberNames.add("Rahul3");
+        memberNames.add("Salman");
+        memberNames.add("Yana");
+        memberNames.add("Lokesh");*/
+
+        System.out.println(getFibonacci(8));
+
+        System.out.println(fibonacci(8));
+
+      //  memberNames.stream().sorted()
+                          //  .map(String::toUpperCase).forEach(p->System.out.println(p));
+
+       // memberNames.stream().flatMap(x->Stream.iterate(x<i))
+
+
+    }
+
+
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return Stream.iterate(new int[] {0, 1}, f -> new int[] {f[1], f[0] + f[1]})
+                .limit(n)
+                .reduce((a, b) -> b)
+                .get()[0];
+    }
+
+
+
+    public static List<Integer> getFibonacci(int series) {
+        return Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(series)
+                .map(n -> n[0])
+                .collect(Collectors.toList());
+    }
+
+
+}
