@@ -1,0 +1,48 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class FindNDuplicateElements {
+
+        public static void main(String args[]) {
+
+
+            int[] input= {2,3,4,4,4,5,5,4,5};
+            System.out.println(GetDuplicateValue(input,4));
+
+
+        }
+
+        public static List<Integer> GetDuplicateValue(int[] data, int k)
+        {
+            int val = data.length/k;
+
+            List<Integer> temp = new ArrayList<Integer>();
+
+            for(int i=0;i<data.length;i++) {
+
+                temp.add(data[i]);
+
+            }
+
+            Set<Integer> resultSet = new HashSet<Integer>(temp);
+            List<Integer> result = new ArrayList<Integer>();
+            for (Integer i : resultSet) {
+                int freq=Collections.frequency(temp,i);
+                if(freq>val)
+                {
+                    result.add(temp.get(i).intValue());
+
+
+                }
+
+            }
+
+
+            return result;
+
+
+        }
+
+    }
+
+
