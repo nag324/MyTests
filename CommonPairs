@@ -1,0 +1,44 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class CommonPairs {
+
+    public static void main(String args[]) {
+
+
+        int[] input= {1,2,2,1,1,3,5,1,2};
+        System.out.println(GetTotalDuplicateValue(input));
+
+
+    }
+
+    public static int GetTotalDuplicateValue(int[] data)
+    {
+        int pairs = 0;
+
+         if(data.length==0) return pairs;
+
+        Set<Integer> resultSet = new HashSet<Integer>();
+        for (int i=0; i<data.length;i++) {
+
+            if(!resultSet.contains(data[i]))
+            {
+                resultSet.add(data[i]);
+            }
+            else
+            {
+                pairs++;
+                resultSet.remove(data[i]);
+             }
+
+       // System.out.println(result);
+
+        }
+
+
+       return pairs;
+
+
+    }
+
+}
